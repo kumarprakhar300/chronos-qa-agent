@@ -17,9 +17,13 @@ export class PlaywrightController {
       await this.close();
     }
     
+    // Force headless mode in production (cloud hosts like Render don't have visual screens/XServer)
+    const isProduction = process.env.NODE_ENV === 'production';
+    const runHeaded = isProduction ? false : headed;
+
     // Launch Playwright Chromium
     this.browser = await chromium.launch({
-      headless: !headed,
+      headless: !runHeaded,
       args: ['--disable-web-security', '--no-sandbox']
     });
     
