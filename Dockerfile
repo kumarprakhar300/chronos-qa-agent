@@ -27,8 +27,6 @@ COPY package.json ./
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/backend/package.json ./backend/
 COPY --from=builder /app/backend/dist ./backend/dist
-COPY --from=builder /app/backend/node_modules ./backend/node_modules
-COPY --from=builder /app/frontend/package.json ./frontend/
 COPY --from=builder /app/frontend/dist ./frontend/dist
 
 # Set production env variables
