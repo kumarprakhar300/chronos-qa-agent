@@ -3,6 +3,7 @@ import { createServer } from 'http';
 import { WebSocketServer, WebSocket } from 'ws';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
 import { VisualQAAgent, AgentStepLog } from './agent';
 
 dotenv.config();
@@ -101,6 +102,14 @@ wss.on('connection', (ws: WebSocket) => {
   ws.on('close', () => {
     console.log('Dashboard client disconnected.');
   });
+});
+
+// Serve frontend build assets in production
+const frontendPath = path.join(__dirname, '../../frontend/dist');
+app.use(express.static(frontendPath));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
 server.listen(port, () => {
