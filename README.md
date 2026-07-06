@@ -1,5 +1,7 @@
 # Chronos: Visual Self-Healing QA & Testing Agent
 
+### 🔗 Live Demo: [https://chronos-qa-agent.onrender.com](https://chronos-qa-agent.onrender.com)
+
 Chronos is an autonomous, Visual-Language Model (VLM) powered E2E testing agent. It reads natural language instructions, runs them inside a programmatically controlled browser (Playwright), captures screenshots, and utilizes the Gemini API to decide actions and automatically heal broken selectors in real-time.
 
 All progress, visual actions, screenshots, and self-healing details are streamed back to a premium dark glassmorphic control panel dashboard.
