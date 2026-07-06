@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chronos - Visual Self-Healing QA Agent</title>
+    <!-- Modern Premium Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="app">
+      <!-- Glassmorphic Cyber Header -->
+      <header class="cyber-header">
+        <div class="logo-area">
+          <span class="logo-icon">⏳</span>
+          <h1>CHRONOS</h1>
+          <span class="logo-subtitle">Visual QA Agent</span>
+        </div>
+        <div class="system-status">
+          <div class="status-indicator">
+            <span class="status-dot disconnected" id="status-dot"></span>
+            <span id="status-text">Connecting Server...</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Layout -->
+      <main class="dashboard-layout">
+        <!-- Sidebar Controls -->
+        <aside class="dashboard-sidebar">
+          
+          <!-- API Configuration Card -->
+          <section class="glass-card config-card">
+            <h3>🔑 API Configuration</h3>
+            <div class="input-group">
+              <label for="gemini-key">Gemini API Key</label>
+              <input type="password" id="gemini-key" placeholder="Enter ghp_ or AIzaSy... key" />
+              <span class="input-hint">Your key is stored locally in memory only.</span>
+            </div>
+            <div class="checkbox-group">
+              <label class="switch">
+                <input type="checkbox" id="headed-browser" checked>
+                <span class="slider"></span>
+              </label>
+              <label for="headed-browser" class="checkbox-label">Headed (Show Browser UI)</label>
+            </div>
+          </section>
+
+          <!-- Test Script Planner Card -->
+          <section class="glass-card planner-card">
+            <div class="card-header">
+              <h3>📋 Test Instructions</h3>
+              <button id="clear-steps" class="btn btn-secondary btn-xs">Clear All</button>
+            </div>
+            
+            <div class="instructions-list" id="instructions-container">
+              <!-- Dynamically populated steps -->
+            </div>
+
+            <!-- Quick Add Tool -->
+            <div class="quick-add-group">
+              <input type="text" id="new-step-text" placeholder="e.g. Go to google.com" />
+              <button id="add-step" class="btn btn-primary">+</button>
+            </div>
+
+            <div class="quick-presets">
+              <span class="preset-tag" data-action="Go to https://news.ycombinator.com">Go to HN</span>
+              <span class="preset-tag" data-action="Click on the search input">Click Search</span>
+              <span class="preset-tag" data-action="Type 'Gemini AI' into the search input">Type 'Gemini'</span>
+            </div>
+
+            <button id="run-agent" class="btn btn-action btn-full" disabled>🚀 Run QA Agent</button>
+          </section>
+        </aside>
+
+        <!-- Main Workspace Area -->
+        <section class="dashboard-workspace">
+          
+          <!-- Top Stats Row -->
+          <div class="stats-row">
+            <div class="stat-box glass-card">
+              <span class="stat-label">Execution Status</span>
+              <span class="stat-value" id="stat-status">Idle</span>
+            </div>
+            <div class="stat-box glass-card">
+              <span class="stat-label">Completed Steps</span>
+              <span class="stat-value" id="stat-progress">0 / 0</span>
+            </div>
+            <div class="stat-box glass-card healing-stat">
+              <span class="stat-label">Self-Healings</span>
+              <span class="stat-value" id="stat-heals">0</span>
+            </div>
+          </div>
+
+          <!-- Mid split view: Live view & Logs -->
+          <div class="workbench-grid">
+            
+            <!-- Live View Panel -->
+            <div class="glass-card live-view-panel">
+              <div class="panel-header">
+                <h3>🖥️ Live Browser View</h3>
+                <span id="current-url" class="url-display">No active browser page</span>
+              </div>
+              <div class="screenshot-container">
+                <div class="screenshot-overlay" id="screenshot-overlay">
+                  <div class="screenshot-placeholder">
+                    <span class="placeholder-icon">🌐</span>
+                    <p>Browser screen will stream here during execution</p>
+                  </div>
+                </div>
+                <img id="browser-screenshot" class="screenshot-img hidden" src="" alt="Browser Live View" />
+              </div>
+            </div>
+
+            <!-- Logging & Terminal Panel -->
+            <div class="glass-card terminal-panel">
+              <div class="panel-header">
+                <h3>🧠 Agent Reasoning & Logs</h3>
+                <button id="clear-logs" class="btn btn-secondary btn-xs">Clear Logs</button>
+              </div>
+              <div class="terminal-body" id="terminal-logs">
+                <div class="terminal-line system-line">[System] Ready to run automation steps...</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Self-Healing Event Alert System -->
+          <div class="glass-card self-healing-alert hidden" id="healing-alert-box">
+            <div class="healing-alert-content">
+              <span class="alert-icon">⚡</span>
+              <div class="alert-text-group">
+                <h4>Dynamic Self-Healing Triggered</h4>
+                <p id="healing-alert-desc">Locating dynamic element after target timed out...</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
