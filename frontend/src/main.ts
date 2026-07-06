@@ -34,7 +34,15 @@ let isRunning = false;
 
 // 1. Initialize WebSocket Connection
 function connectWebSocket() {
-  const wsUrl = `ws://${window.location.hostname}:3001`;
+  const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+  
+  // If running locally in Vite dev mode (port 5173), point to backend port 3001
+  // Otherwise, in production, connect to the exact same host/port serving the page
+  const host = window.location.port === '5173' 
+    ? `${window.location.hostname}:3001` 
+    : window.location.host;
+
+  const wsUrl = `${protocol}//${host}`;
   ws = new WebSocket(wsUrl);
 
   ws.onopen = () => {
