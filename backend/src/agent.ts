@@ -1,4 +1,4 @@
-import { PlaywrightController, AutomationAction } from './playwright.js';
+import { PlaywrightController, AutomationAction } from './playwright';
 import dotenv from 'dotenv';
 
 dotenv.config();

@@ -3,7 +3,7 @@ import { createServer } from 'http';
 import { WebSocketServer, WebSocket } from 'ws';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { VisualQAAgent, AgentStepLog } from './agent.js';
+import { VisualQAAgent, AgentStepLog } from './agent';
 
 dotenv.config();
 
