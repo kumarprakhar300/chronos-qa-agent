@@ -20,6 +20,7 @@ const terminalLogs = document.getElementById('terminal-logs') as HTMLDivElement;
 const clearLogsBtn = document.getElementById('clear-logs') as HTMLButtonElement;
 const healingAlertBox = document.getElementById('healing-alert-box') as HTMLDivElement;
 const healingAlertDesc = document.getElementById('healing-alert-desc') as HTMLParagraphElement;
+const themeSelect = document.getElementById('theme-select') as HTMLSelectElement;
 
 // State Variables
 let ws: WebSocket | null = null;
@@ -327,7 +328,21 @@ function triggerHealingAlert(message: string, originSelector?: string) {
   }, 6000);
 }
 
+// Theme switcher function
+function initTheme() {
+  const cachedTheme = localStorage.getItem('CHRONOS_THEME') || 'cyber';
+  themeSelect.value = cachedTheme;
+  document.body.className = `theme-${cachedTheme}`;
+
+  themeSelect.addEventListener('change', () => {
+    const selectedTheme = themeSelect.value;
+    document.body.className = `theme-${selectedTheme}`;
+    localStorage.setItem('CHRONOS_THEME', selectedTheme);
+  });
+}
+
 // On Startup
+initTheme();
 initApiKey();
 renderInstructions();
 connectWebSocket();

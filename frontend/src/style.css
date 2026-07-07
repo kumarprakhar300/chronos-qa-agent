@@ -1,22 +1,51 @@
 :root {
+  --border-glass: rgba(255, 255, 255, 0.07);
+  --accent-emerald: #059669;
+  --accent-rose: #dc2626;
+  --text-primary: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --text-muted: #4b5563;
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Default theme: Cyber */
   --bg-primary: #07080d;
   --bg-card: rgba(11, 15, 28, 0.75);
-  --border-glass: rgba(255, 255, 255, 0.07);
-  --border-glass-active: rgba(0, 240, 255, 0.3);
-  
   --primary-cyan: #00f0ff;
   --primary-blue: #2563eb;
   --accent-purple: #9333ea;
   --accent-amber: #d97706;
-  --accent-emerald: #059669;
-  --accent-rose: #dc2626;
-  
-  --text-primary: #f3f4f6;
-  --text-secondary: #9ca3af;
-  --text-muted: #4b5563;
-  
-  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --border-glass-active: rgba(0, 240, 255, 0.3);
+}
+
+body.theme-synthwave {
+  --bg-primary: #0f051a;
+  --bg-card: rgba(26, 8, 48, 0.75);
+  --primary-cyan: #ff007f;
+  --primary-blue: #a855f7;
+  --accent-purple: #f59e0b;
+  --accent-amber: #3b82f6;
+  --border-glass-active: rgba(255, 0, 127, 0.3);
+}
+
+body.theme-emerald {
+  --bg-primary: #040c09;
+  --bg-card: rgba(8, 26, 19, 0.75);
+  --primary-cyan: #10b981;
+  --primary-blue: #06b6d4;
+  --accent-purple: #10b981;
+  --accent-amber: #f59e0b;
+  --border-glass-active: rgba(16, 185, 129, 0.3);
+}
+
+body.theme-eclipse {
+  --bg-primary: #0c0804;
+  --bg-card: rgba(28, 18, 10, 0.75);
+  --primary-cyan: #f59e0b;
+  --primary-blue: #ea580c;
+  --accent-purple: #dc2626;
+  --accent-amber: #00f0ff;
+  --border-glass-active: rgba(245, 158, 11, 0.3);
 }
 
 * {
@@ -145,6 +174,37 @@ body {
   border-radius: 6px;
   border: 1px solid var(--border-glass);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.system-status {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.theme-dropdown {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--border-glass);
+  border-radius: 99px;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.45rem 1rem;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.theme-dropdown:hover {
+  border-color: var(--border-glass-active);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.theme-dropdown option {
+  background: #0d0f17;
+  color: var(--text-primary);
 }
 
 .status-indicator {
