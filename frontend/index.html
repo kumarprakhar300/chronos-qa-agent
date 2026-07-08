@@ -52,6 +52,14 @@
               <input type="password" id="gemini-key" placeholder="Enter ghp_ or AIzaSy... key" />
               <span class="input-hint">Your key is stored locally in memory only.</span>
             </div>
+            <div class="input-group">
+              <label for="device-viewport">Viewport / Device</label>
+              <select id="device-viewport" class="theme-dropdown" style="width: 100%; border-radius: 8px;">
+                <option value="desktop">🖥️ Desktop (1280x800)</option>
+                <option value="tablet">📟 Tablet (768x1024)</option>
+                <option value="mobile">📱 Mobile (390x844)</option>
+              </select>
+            </div>
             <div class="checkbox-group">
               <label class="switch">
                 <input type="checkbox" id="headed-browser" checked>
@@ -85,6 +93,9 @@
             </div>
 
             <button id="run-agent" class="btn btn-action btn-full" disabled>🚀 Run QA Agent</button>
+            <button id="export-script" class="btn btn-secondary btn-full" style="margin-top: 0.75rem;">
+              📥 Export Playwright Code
+            </button>
           </section>
         </aside>
 

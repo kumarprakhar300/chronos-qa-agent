@@ -98,16 +98,17 @@ export class VisualQAAgent {
   async runTask(
     userInstructions: string[],
     logCallback: LogCallback,
-    headed: boolean = true
+    headed: boolean = true,
+    viewport: string = 'desktop'
   ) {
     logCallback({
       timestamp: new Date().toISOString(),
       step: 'Initialization',
       status: 'pending',
-      message: 'Launching Playwright browser context...',
+      message: `Launching Playwright browser context (${viewport})...`,
     });
 
-    await this.controller.init(headed);
+    await this.controller.init(headed, viewport);
     const page = this.controller.getPage();
 
     try {

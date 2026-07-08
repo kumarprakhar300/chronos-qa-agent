@@ -43,7 +43,7 @@ wss.on('connection', (ws: WebSocket) => {
       const data = JSON.parse(message);
 
       if (data.type === 'START_RUN') {
-        const { instructions, apiKey, headed } = data.payload;
+        const { instructions, apiKey, headed, viewport } = data.payload;
 
         if (apiKey) {
           agent.setApiKey(apiKey);
@@ -57,7 +57,7 @@ wss.on('connection', (ws: WebSocket) => {
           return;
         }
 
-        console.log(`Starting Chronos run with ${instructions.length} instructions...`);
+        console.log(`Starting Chronos run on ${viewport || 'desktop'} viewport with ${instructions.length} instructions...`);
         
         ws.send(JSON.stringify({
           type: 'RUN_STARTED',
@@ -73,7 +73,8 @@ wss.on('connection', (ws: WebSocket) => {
               payload: log
             }));
           },
-          headed !== false
+          headed !== false,
+          viewport || 'desktop'
         );
 
         ws.send(JSON.stringify({

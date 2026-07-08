@@ -12,7 +12,7 @@ export class PlaywrightController {
   private context: BrowserContext | null = null;
   private page: Page | null = null;
 
-  async init(headed: boolean = true) {
+  async init(headed: boolean = true, viewport: string = 'desktop') {
     if (this.browser) {
       await this.close();
     }
@@ -27,8 +27,29 @@ export class PlaywrightController {
       args: ['--disable-web-security', '--no-sandbox']
     });
     
+    // Define viewport settings based on chosen device
+    let width = 1280;
+    let height = 800;
+    let isMobile = false;
+    let hasTouch = false;
+
+    if (viewport === 'tablet') {
+      width = 768;
+      height = 1024;
+    } else if (viewport === 'mobile') {
+      width = 390;
+      height = 844;
+      isMobile = true;
+      hasTouch = true;
+    }
+
     this.context = await this.browser.newContext({
-      viewport: { width: 1280, height: 720 },
+      viewport: { width, height },
+      isMobile,
+      hasTouch,
+      userAgent: isMobile
+        ? 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1'
+        : undefined,
       deviceScaleFactor: 1,
     });
     
